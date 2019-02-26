@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.apache.xmlgraphics:fop:2.3'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+application {
+    mainClassName = 'apache.fop.graalvm.App'
+}
+
+run {
+    args = ["--xml", "src/test/data/projectteam.xml", "--out", "/Users/stefan/tmp/"]
+}

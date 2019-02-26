@@ -87,5 +87,31 @@ $GRAALVM_HOME/bin/native-image --verbose --allow-incomplete-classpath  --report-
 
 ```
 
+```
+[apache.fop.graalvm.app:21446]     analysis:  53,859.83 ms
+Error: Detected a started Thread in the image heap. Threads running in the image generator are no longer running at image run time. The object was probably created by a class initializer and is reachable from a static field. By default, all class initialization is done during native image building.You can manually delay class initialization to image run time by using the option --delay-class-initialization-to-runtime=<class-name>. Or you can write your own initialization methods and call them explicitly from your main entry point.
+Detailed message:
+Error: Detected a started Thread in the image heap. Threads running in the image generator are no longer running at image run time. The object was probably created by a class initializer and is reachable from a static field. By default, all class initialization is done during native image building.You can manually delay class initialization to image run time by using the option --delay-class-initialization-to-runtime=<class-name>. Or you can write your own initialization methods and call them explicitly from your main entry point.
+Trace: 	object sun.java2d.opengl.OGLRenderQueue
+	field sun.java2d.opengl.OGLRenderQueue.theInstance
+
+com.oracle.svm.core.util.UserError$UserException: Detected a started Thread in the image heap. Threads running in the image generator are no longer running at image run time. The object was probably created by a class initializer and is reachable from a static field. By default, all class initialization is done during native image building.You can manually delay class initialization to image run time by using the option --delay-class-initialization-to-runtime=<class-name>. Or you can write your own initialization methods and call them explicitly from your main entry point.
+Detailed message:
+Error: Detected a started Thread in the image heap. Threads running in the image generator are no longer running at image run time. The object was probably created by a class initializer and is reachable from a static field. By default, all class initialization is done during native image building.You can manually delay class initialization to image run time by using the option --delay-class-initialization-to-runtime=<class-name>. Or you can write your own initialization methods and call them explicitly from your main entry point.
+Trace: 	object sun.java2d.opengl.OGLRenderQueue
+	field sun.java2d.opengl.OGLRenderQueue.theInstance
+
+	at com.oracle.svm.core.util.UserError.abort(UserError.java:67)
+	at com.oracle.svm.hosted.NativeImageGenerator.runPointsToAnalysis(NativeImageGenerator.java:701)
+	at com.oracle.svm.hosted.NativeImageGenerator.doRun(NativeImageGenerator.java:492)
+	at com.oracle.svm.hosted.NativeImageGenerator.lambda$run$0(NativeImageGenerator.java:410)
+	at java.util.concurrent.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1386)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Error: Image building with exit status 1
+```
+
 
 
